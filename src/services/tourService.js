@@ -1,11 +1,8 @@
 import axiosInstance from "./axiosInstance";
 
-export const login = async (email, password) => {
+export const createTour = async (tourData) => {
   try {
-    const response = await axiosInstance.post("/auth/login", {
-      email,
-      password,
-    });
+    const response = await axiosInstance.post("/tours", tourData);
     return response.data;
   } catch (error) {
     throw error.response ? error.response.data : error;

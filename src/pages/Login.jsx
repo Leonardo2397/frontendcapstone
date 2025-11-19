@@ -7,7 +7,6 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  // Prendiamo la funzione login dal contesto
   const { login } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
@@ -15,16 +14,11 @@ export default function Login() {
     setError("");
 
     try {
-      // Chiamata al backend
       const data = await loginAPI(email, password);
-
-      // Salviamo il token nel contesto
       login(data.token);
-
-      // Reindirizza alla dashboard o home
-      window.location.href = "/dashboard";
+      window.location.href = "/dashboard"; // o usa react-router navigate
     } catch (err) {
-      setError(err.message || "Errore login");
+      setError(err.message || err.error || "Errore login");
     }
   };
 
@@ -32,7 +26,6 @@ export default function Login() {
     <div className="container-fluid d-flex justify-content-center align-items-center vh-100">
       <div className="card p-4 shadow" style={{ maxWidth: "400px", width: "100%" }}>
         <h3 className="text-center mb-3">Login</h3>
-
         {error && <div className="alert alert-danger">{error}</div>}
 
         <form onSubmit={handleSubmit}>
