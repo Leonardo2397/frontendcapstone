@@ -16,9 +16,9 @@ export default function Login() {
     try {
       const data = await loginAPI(email, password);
       login(data.token);
-      window.location.href = "/dashboard"; // o usa react-router navigate
+      window.location.href = "/dashboard";
     } catch (err) {
-      setError(err.message || err.error || "Errore login");
+      setError(err.message || "Errore login");
     }
   };
 
@@ -26,6 +26,7 @@ export default function Login() {
     <div className="container-fluid d-flex justify-content-center align-items-center vh-100">
       <div className="card p-4 shadow" style={{ maxWidth: "400px", width: "100%" }}>
         <h3 className="text-center mb-3">Login</h3>
+
         {error && <div className="alert alert-danger">{error}</div>}
 
         <form onSubmit={handleSubmit}>
@@ -53,11 +54,21 @@ export default function Login() {
             />
           </div>
 
-          <button type="submit" className="btn btn-primary w-100">
-            Accedi
-          </button>
+          <button type="submit" className="btn btn-primary w-100">Accedi</button>
         </form>
+
+        {/* 👇 Aggiunta link alla registrazione */}
+        <div className="text-center mt-3">
+          <small>
+            Non hai un account?{" "}
+            <a href="/register" style={{ textDecoration: "none" }}>
+              Creane uno
+            </a>
+          </small>
+        </div>
+
       </div>
     </div>
   );
 }
+
