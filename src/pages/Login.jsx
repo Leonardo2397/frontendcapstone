@@ -16,7 +16,7 @@ export default function Login() {
     try {
       const data = await loginAPI(email, password);
       login(data.token);
-      window.location.href = "/dashboard";
+      window.location.href = "/";
     } catch (err) {
       setError(err.message || "Errore login");
     }
