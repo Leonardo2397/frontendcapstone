@@ -1,11 +1,6 @@
-import axios from "./axiosInstance";
-
-export const createBooking = async (bookingData) => {
-  const res = await axios.post("/bookings", bookingData);
-  return res.data;
-};
+import axios from "axios";
 
 export const getUserBookings = async (email) => {
-  const res = await axios.get(`/bookings/user/${email}`);
+  const res = await axios.get(`/api/bookings/user/${email}`);
   return res.data;
 };

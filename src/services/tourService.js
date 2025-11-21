@@ -1,29 +1,19 @@
-import axiosInstance from "./axiosInstance";
+import axios from "./axiosInstance";
 
-export const createTour = async (tourData) => {
-  try {
-    const response = await axiosInstance.post("/tours", tourData);
-    return response.data;
-  } catch (error) {
-    throw error.response ? error.response.data : error;
-  }
-};
-
+//  Recupera lista completa dei tour
 export const getAllTours = async () => {
-  try {
-    const res = await axiosInstance.get("/tours");
-    return res.data; // aspettati una lista di TourDto
-  } catch (error) {
-    throw error.response ? error.response.data : error;
-  }
-};
-
-export const getTourById = async (id) => {
-  const res = await axiosInstance.get(`/tours/${id}`);
+  const res = await axios.get("/api/tours");
   return res.data;
 };
 
-export const bookTour = async (tourId) => {
-  const res = await axiosInstance.post(`/bookings/${tourId}`);
+// Recupera un singolo tour
+export const getTourById = async (id) => {
+  const res = await axios.get(`/api/tours/${id}`);
+  return res.data;
+};
+
+//  Effettua una prenotazione
+export const bookTour = async (bookingData) => {
+  const res = await axios.post("/api/bookings", bookingData);
   return res.data;
 };
