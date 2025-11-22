@@ -26,10 +26,22 @@ export default function TourDetails() {
   }, [id]);
 
   const handleBooking = async () => {
+    if (!tour || !user) return;
+
+    const bookingData = {
+      bookingDate: new Date(),
+      tourDate: new Date(), // se avrai un calendario lo sostituirai
+      participants: 1,
+      status: "PENDING",
+      email: user.email,
+      tourName: tour.name,   // <-- CORRETTO! il backend usa "name"
+    };
+
     try {
-      const res = await bookTour(tour, user);
+      await bookTour(bookingData);
       setMessage("Prenotazione effettuata con successo!");
     } catch (err) {
+      console.error(err);
       setMessage("Errore durante la prenotazione.");
     }
   };
@@ -38,10 +50,16 @@ export default function TourDetails() {
 
   return (
     <div className="container my-5">
-      <h2>{tour.title}</h2>
-      <img src={tour.imageUrl} className="img-fluid mb-4" alt={tour.title} />
+      <h2>{tour.name}</h2>
+
+      <img
+        src={tour.imageUrl}
+        className="img-fluid mb-4"
+        alt={tour.name}
+      />
 
       <p>{tour.description}</p>
+      <p><strong>Difficoltà:</strong> {tour.difficulty}</p>
       <p><strong>Durata:</strong> {tour.duration} ore</p>
       <p><strong>Prezzo:</strong> €{tour.price}</p>
 
