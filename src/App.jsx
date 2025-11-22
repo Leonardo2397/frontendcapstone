@@ -7,8 +7,9 @@ import Register from "./pages/Register";
 import ToursList from "./pages/ToursList";
 import TourDetails from "./pages/TourDetails";
 import Profile from "./pages/Profile";
-import Bookings from "./pages/Bookings";
-
+import MyBookings from "./pages/MyBookings";
+import AboutUs from "./pages/AboutUs";
+import ContactUs from "./pages/ContactUs";
 
 
 function App() {
@@ -23,9 +24,11 @@ function App() {
   <Route path="bike-tours" element={<ToursList />} />
   <Route path="tours/:id" element={<TourDetails />} />
   <Route path="profile" element={<Profile />} />
-  <Route path="bookings" element={<Bookings />} />
+  <Route path="bookings" element={<MyBookings />} />
   <Route path="login" element={<Login />} />
   <Route path="register" element={<Register />} />
+  <Route path="about-us" element={<AboutUs />} />
+  <Route path="contact-us" element={<ContactUs />} />
 </Route>
 
 

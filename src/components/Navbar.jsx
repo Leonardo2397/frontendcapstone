@@ -1,90 +1,11 @@
-// import { Link } from "react-router-dom";
-
-// export default function Navbar() {
-//   return (
-//     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-//       <div className="container">
-
-//         {/* LEFT - (optional logo, per ora vuoto) */}
-//         <Link className="navbar-brand" to="/">
-//           TopBike
-//         </Link>
-
-//         {/* HAMBURGER MENU */}
-//         <button
-//           className="navbar-toggler"
-//           type="button"
-//           data-bs-toggle="collapse"
-//           data-bs-target="#navbarContent"
-//         >
-//           <span className="navbar-toggler-icon"></span>
-//         </button>
-
-//         {/* CENTER + RIGHT */}
-//         <div className="collapse navbar-collapse justify-content-between" id="navbarContent">
-
-//           {/* CENTER - Main Navigation */}
-//           <ul className="navbar-nav mx-auto">
-//             <li className="nav-item">
-//               <Link className="nav-link" to="/bike-tours">Bike Tours</Link>
-//             </li>
-
-//             <li className="nav-item">
-//               <Link className="nav-link" to="/bike-rental">Bike Rental</Link>
-//             </li>
-
-//             <li className="nav-item">
-//               <Link className="nav-link" to="/about">About Us</Link>
-//             </li>
-
-//             <li className="nav-item">
-//               <Link className="nav-link" to="/contact">Contact Us</Link>
-//             </li>
-//           </ul>
-
-//           {/* RIGHT - Home / Login / Register */}
-//           <div className="d-flex align-items-center">
-//             <Link className="btn btn-outline-secondary me-2" to="/">
-//               Home
-//             </Link>
-
-//             <Link className="btn btn-outline-primary me-2" to="/login">
-//               Login
-//             </Link>
-
-//             <Link className="btn btn-primary" to="/register">
-//               Register
-//             </Link>
-//           </div>
-
-//         </div>
-
-//       </div>
-//     </nav>
-//   );
-// }
-
-
-// src/components/Navbar.jsx
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { Navbar, Nav, Container, Button, Dropdown } from "react-bootstrap";
 
-export default function Navbar() {
+export default function AppNavbar() {
   const { user, logout } = useAuth();
-  const [open, setOpen] = useState(false);
-  const dropdownRef = useRef(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    function handleClickOutside(e) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
   const getInitials = () => {
     if (!user) return "";
@@ -97,91 +18,66 @@ export default function Navbar() {
 
   const onLogout = () => {
     logout();
-    setOpen(false);
     navigate("/login");
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
-      <div className="container">
-        <Link className="navbar-brand" to="/">TopBike</Link>
-
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        <div className="collapse navbar-collapse justify-content-between" id="navContent">
-          <ul className="navbar-nav mx-auto">
-            <li className="nav-item"><Link className="nav-link" to="/bike-tours">Bike Tours</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/bike-rental">Bike Rental</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/about">About Us</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/contact">Contact Us</Link></li>
-          </ul>
+    <Navbar bg="light" expand="lg" className="shadow-sm">
+      <Container>
+        <Navbar.Brand as={Link} to="/">TopBike</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mx-auto">
+            <Nav.Link as={Link} to="/bike-tours">Bike Tours</Nav.Link>
+            {/* <Nav.Link as={Link} to="/bike-rental">Bike Rental</Nav.Link> */}
+            <Nav.Link as={Link} to="/about-us">About Us</Nav.Link>
+            <Nav.Link as={Link} to="/contact-us">Contact Us</Nav.Link>
+          </Nav>
 
           <div className="d-flex align-items-center">
-            <Link className="btn btn-outline-secondary me-2" to="/">Home</Link>
+            <Button variant="outline-secondary" as={Link} to="/" className="me-2">
+              Home
+            </Button>
 
-            {/* If user is not logged -> show links */}
             {!user ? (
               <>
-                <Link className="btn btn-outline-primary me-2" to="/login">Login</Link>
-                <Link className="btn btn-primary" to="/register">Register</Link>
+                <Button variant="outline-primary" as={Link} to="/login" className="me-2">
+                  Login
+                </Button>
+                <Button variant="primary" as={Link} to="/register">
+                  Register
+                </Button>
               </>
             ) : (
-              <div className="position-relative" ref={dropdownRef}>
-                <div
-                  onClick={() => setOpen((v) => !v)}
+              <Dropdown align="end">
+                <Dropdown.Toggle
+                  variant="primary"
+                  id="user-dropdown"
                   style={{
-                    backgroundColor: "#0d6efd",
-                    color: "white",
                     width: "40px",
                     height: "40px",
                     borderRadius: "50%",
+                    padding: 0,
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    fontWeight: "600",
-                    cursor: "pointer",
-                    userSelect: "none"
                   }}
                   title={user.email}
                 >
                   {getInitials()}
-                </div>
+                </Dropdown.Toggle>
 
-                {open && (
-                  <div
-                    className="shadow-sm"
-                    style={{
-                      position: "absolute",
-                      right: 0,
-                      top: "48px",
-                      width: "200px",
-                      background: "white",
-                      borderRadius: "8px",
-                      zIndex: 1000,
-                      overflow: "hidden"
-                    }}
-                  >
-                    <div className="p-2">
-                      <div className="dropdown-item" style={{ cursor: "pointer" }} onClick={() => { navigate("/profile"); setOpen(false); }}>
-                        Profilo
-                      </div>
-                      <div className="dropdown-item" style={{ cursor: "pointer" }} onClick={() => { navigate("/bookings"); setOpen(false); }}>
-                        Le mie prenotazioni
-                      </div>
-                      <div className="dropdown-divider"></div>
-                      <div className="dropdown-item text-danger" style={{ cursor: "pointer" }} onClick={onLogout}>
-                        Logout
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={() => navigate("/profile")}>Profilo</Dropdown.Item>
+                  <Dropdown.Item onClick={() => navigate("/bookings")}>Le mie prenotazioni</Dropdown.Item>
+                  <Dropdown.Divider />
+                  <Dropdown.Item onClick={onLogout} className="text-danger">Logout</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             )}
           </div>
-        </div>
-      </div>
-    </nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }
