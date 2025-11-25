@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { Navbar, Nav, Container, Button, Dropdown } from "react-bootstrap";
@@ -8,12 +7,11 @@ export default function AppNavbar() {
   const navigate = useNavigate();
 
   const getInitials = () => {
-    if (!user) return "";
-    const f = user.firstName || "";
-    const l = user.lastName || "";
-    if (f && l) return (f.charAt(0) + l.charAt(0)).toUpperCase();
-    if (user.email) return user.email.charAt(0).toUpperCase();
-    return "";
+    if (!user) return "?";
+    // usa solo l'email se firstName/lastName assenti
+    return user.firstName && user.lastName
+      ? (user.firstName[0] + user.lastName[0]).toUpperCase()
+      : user.email[0].toUpperCase();
   };
 
   const onLogout = () => {
@@ -29,7 +27,6 @@ export default function AppNavbar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto">
             <Nav.Link as={Link} to="/bike-tours">Bike Tours</Nav.Link>
-            {/* <Nav.Link as={Link} to="/bike-rental">Bike Rental</Nav.Link> */}
             <Nav.Link as={Link} to="/about-us">About Us</Nav.Link>
             <Nav.Link as={Link} to="/contact-us">Contact Us</Nav.Link>
           </Nav>
@@ -61,6 +58,7 @@ export default function AppNavbar() {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
+                    fontWeight: "bold",
                   }}
                   title={user.email}
                 >
@@ -70,16 +68,16 @@ export default function AppNavbar() {
                 <Dropdown.Menu>
                   <Dropdown.Item onClick={() => navigate("/profile")}>Profilo</Dropdown.Item>
                   <Dropdown.Item onClick={() => navigate("/bookings")}>Le mie prenotazioni</Dropdown.Item>
-                   {/* solo x admin */}
-  {user.role === "ADMIN" && (
-    <>
-      <Dropdown.Divider />
-      <Dropdown.Item onClick={() => navigate("/admin/events")}>
-        Gestione Eventi
-      </Dropdown.Item>
-    </>
-  )}
-                 
+                  
+                  {user.role && user.role.includes("ADMIN") && (
+                    <>
+                      <Dropdown.Divider />
+                      <Dropdown.Item onClick={() => navigate("/admin/events")}>
+                        Gestione Eventi
+                      </Dropdown.Item>
+                    </>
+                  )}
+
                   <Dropdown.Divider />
                   <Dropdown.Item onClick={onLogout} className="text-danger">Logout</Dropdown.Item>
                 </Dropdown.Menu>
