@@ -10,6 +10,10 @@ import Profile from "./pages/Profile";
 import MyBookings from "./pages/MyBookings";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
+import AdminRoute from "./routes/AdminRoute";
+import GestioneEventi from "./pages/GestioneEventi.jsx";
+
+
 
 
 function App() {
@@ -29,9 +33,17 @@ function App() {
   <Route path="register" element={<Register />} />
   <Route path="about-us" element={<AboutUs />} />
   <Route path="contact-us" element={<ContactUs />} />
+
+{/* route solo x admin */}
+    <Route
+    path="admin/events"
+    element={
+      <AdminRoute>
+        <GestioneEventi />
+      </AdminRoute>
+    }
+  />
 </Route>
-
-
     </Routes>
   );
 }

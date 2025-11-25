@@ -70,6 +70,16 @@ export default function AppNavbar() {
                 <Dropdown.Menu>
                   <Dropdown.Item onClick={() => navigate("/profile")}>Profilo</Dropdown.Item>
                   <Dropdown.Item onClick={() => navigate("/bookings")}>Le mie prenotazioni</Dropdown.Item>
+                   {/* solo x admin */}
+  {user.role === "ADMIN" && (
+    <>
+      <Dropdown.Divider />
+      <Dropdown.Item onClick={() => navigate("/admin/events")}>
+        Gestione Eventi
+      </Dropdown.Item>
+    </>
+  )}
+                 
                   <Dropdown.Divider />
                   <Dropdown.Item onClick={onLogout} className="text-danger">Logout</Dropdown.Item>
                 </Dropdown.Menu>
