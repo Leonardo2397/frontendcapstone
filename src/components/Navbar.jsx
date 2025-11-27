@@ -73,7 +73,7 @@ export default function AppNavbar() {
                     <>
                       <Dropdown.Divider />
                       <Dropdown.Item onClick={() => navigate("/admin/events")}>
-                        Gestione Eventi
+                        Gestione Eventi e Personale
                       </Dropdown.Item>
                     </>
                   )}

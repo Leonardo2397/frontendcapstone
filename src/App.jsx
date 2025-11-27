@@ -11,7 +11,7 @@ import MyBookings from "./pages/MyBookings";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import AdminRoute from "./routes/AdminRoute";
-import GestioneEventi from "./pages/GestioneEventi.jsx";
+import GestioneEventi from "./pages/GestioneEventiPersonale.jsx";
 
 
 
