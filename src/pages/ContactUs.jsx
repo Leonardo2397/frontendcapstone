@@ -13,7 +13,7 @@ export default function ContactUs() {
         <Row className="g-4">
           <Col xs={12} md={6}>
             <h4>Contatti</h4>
-            <p>Email: info@topbike.com</p>
+            <p>Email: info@bad&bike.com</p>
             <p>Telefono: +39 06 12345678</p>
             <p>Indirizzo: Via delle Biciclette 10, 00100 Roma, Italia</p>
             <p>Orari: Lun-Ven 09:00 - 18:00</p>

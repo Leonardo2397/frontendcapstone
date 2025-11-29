@@ -11,7 +11,7 @@ export default function AboutUs() {
       <Container className="py-5">
         <h1 className="text-center mb-4">About Us</h1>
         <p style={{ fontSize: "1.1rem", lineHeight: "1.8" }}>
-          TopBike è una nuova realtà nel mondo dei tour in bicicletta, nata con la passione
+          Bed & Bike è una nuova realtà nel mondo dei tour in bicicletta, nata con la passione
           per la mobilità sostenibile e l'avventura all'aria aperta. Anche se siamo un’azienda
           giovane, il nostro team vanta anni di esperienza nel settore turistico e nella guida di
           percorsi ciclistici sicuri e coinvolgenti.  
