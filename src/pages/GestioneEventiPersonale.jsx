@@ -404,9 +404,9 @@ export default function GestioneEventiPersonale() {
                     value={u.role}
                     onChange={(e) => handleRoleChange(u.id, e.target.value)}
                   >
-                    <option value="USER">USER</option>
-                    <option value="GUIDE">GUIDE</option>
-                    <option value="ADMIN">ADMIN</option>
+                    <option value="ROLE_USER">USER</option>
+                    <option value="ROLE_GUIDE">GUIDE</option>
+                    <option value="ROLE_ADMIN">ADMIN</option>
                   </select>
                 </td>
                 <td>
