@@ -1,0 +1,51 @@
+/* Effetto hover sulle card */
+.tour-card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.tour-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+}
+
+
+.tour-card img {
+  transition: transform 0.5s ease;
+}
+
+.tour-card:hover img {
+  transform: scale(1.13);
+}
+
+
+.btn-success:hover {
+  transform: scale(1.05);
+  transition: 0.25s ease;
+}
+
+
+.why-box {
+  transition: transform 0.3s ease;
+}
+
+.why-box:hover {
+  transform: translateY(-6px);
+}
+
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
