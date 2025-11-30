@@ -9,7 +9,7 @@ export const login = async (email, password) => {
       { withCredentials: true }
     );
 
-    return response.data; // { token, type, email, role }
+    return response.data;
   } catch (error) {
     throw error.response ? error.response.data : error;
   }
@@ -42,7 +42,7 @@ export const getCurrentUser = async () => {
   }
 };
 
-// LOGOUT - cancella cookie quando implementerai /logout
+// LOGOUT
 export const logout = async () => {
   try {
     await axiosInstance.post("/auth/logout", {}, { withCredentials: true });

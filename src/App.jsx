@@ -20,7 +20,7 @@ function App() {
   return (
     <Routes>
 
-      {/* ROUTE PADRE CON NAVBAR + FOOTER */}
+    
      
 
    <Route path="/" element={<Layout />}>
@@ -34,7 +34,7 @@ function App() {
   <Route path="about-us" element={<AboutUs />} />
   <Route path="contact-us" element={<ContactUs />} />
 
-{/* route solo x admin */}
+
     <Route
     path="admin/events"
     element={

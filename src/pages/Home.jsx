@@ -20,8 +20,6 @@ export default function Home() {
   return (
     <>
      
-
-      {/* Hero Section */}
       <section style={{ position: "relative", textAlign: "center" }}>
         <img
           src={bikecity}
@@ -54,7 +52,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tour Cards Section */}
       <Container id="tour" className="py-5">
         <h2 className="text-center mb-4">I nostri tour</h2>
         <Row className="g-4">
@@ -75,7 +72,7 @@ export default function Home() {
           ))}
         </Row>
 
-        {/* Button centrato per reindirizzare a Bike Tours */}
+        
         <div className="text-center mt-4">
           <Button as={Link} to="/bike-tours" variant="success">
             Scopri tutti i tour
@@ -83,7 +80,7 @@ export default function Home() {
         </div>
       </Container>
 
-      {/* Why Choose Us Section */}
+      
       <section style={{ backgroundColor: "#f8f9fa", padding: "3rem 0" }}>
         <Container>
           <h2 className="text-center mb-4">Perché scegliere noi</h2>
@@ -113,7 +110,7 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* Banner Section */}
+      
       <section style={{ textAlign: "center", padding: "3rem 0" }}>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <img

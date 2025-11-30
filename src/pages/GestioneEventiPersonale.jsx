@@ -164,7 +164,6 @@ export default function GestioneEventiPersonale() {
     });
   };
 
-  // -------------------- USERS --------------------
   const loadUsers = async () => {
     if (!isAdmin) return;
     try {
@@ -200,14 +199,13 @@ export default function GestioneEventiPersonale() {
     }
   };
 
-  if (!isAdmin) return <h2>⛔ Accesso negato — Solo admin</h2>;
+  if (!isAdmin) return <h2> Accesso negato — Solo admin</h2>;
   if (loadingTours || loadingUsers) return <p>Caricamento...</p>;
 
   return (
     <div className="container">
       <h1 className="mb-4">Gestione Eventi e Personale (Admin)</h1>
 
-      {/* -------------------- FORM TOUR -------------------- */}
       <div className="card p-3 mb-5">
         <h3>{editingId ? "Modifica Tour" : "Crea Nuovo Tour"}</h3>
         <form onSubmit={handleSubmit} className="row g-3 mt-2">
@@ -338,7 +336,6 @@ export default function GestioneEventiPersonale() {
         </form>
       </div>
 
-      {/* -------------------- LISTA TOUR -------------------- */}
       <h3>Lista Tour</h3>
       <table className="table table-bordered mt-3">
         <thead>
@@ -380,7 +377,6 @@ export default function GestioneEventiPersonale() {
         </tbody>
       </table>
 
-      {/* -------------------- GESTIONE PERSONALE -------------------- */}
       <h3 className="mt-5">Gestione Personale</h3>
       {loadingUsers ? (
         <p>Caricamento utenti...</p>

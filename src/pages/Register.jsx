@@ -20,7 +20,6 @@ export default function Register() {
       await registerAPI(firstName, lastName, email, password);
       setMessage("Registrazione completata! Ora puoi effettuare il login.");
       
-      // Dopo 2 secondi reindirizza al login
       setTimeout(() => {
         window.location.href = "/";
       }, 2000);
@@ -91,7 +90,6 @@ export default function Register() {
           <button type="submit" className="btn btn-success w-100">Registrati</button>
         </form>
 
-        {/* Link al login */}
         <div className="text-center mt-3">
           <small>
             Hai già un account?{" "}

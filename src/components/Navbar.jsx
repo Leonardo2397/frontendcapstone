@@ -8,7 +8,6 @@ export default function AppNavbar() {
 
   const getInitials = () => {
     if (!user) return "?";
-    // usa solo l'email se firstName/lastName assenti
     return user.firstName && user.lastName
       ? (user.firstName[0] + user.lastName[0]).toUpperCase()
       : user.email[0].toUpperCase();

@@ -30,11 +30,11 @@ export default function TourDetails() {
 
     const bookingData = {
       bookingDate: new Date(),
-      tourDate: new Date(), // se avrai un calendario lo sostituirai
+      tourDate: new Date(), 
       participants: 1,
       status: "PENDING",
       email: user.email,
-      tourName: tour.name,   // <-- CORRETTO! il backend usa "name"
+      tourName: tour.name, 
     };
 
     try {

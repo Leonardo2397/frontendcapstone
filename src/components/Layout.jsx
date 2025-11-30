@@ -7,7 +7,6 @@ export default function Layout() {
     <>
       <Navbar />
 
-      {/* Contenuto della pagina */}
       <div style={{ minHeight: "80vh" }}>
         <Outlet />
       </div>

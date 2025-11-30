@@ -86,8 +86,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = (userData) => {
     setUser(userData);
-    setIsLoggedOut(false); // reset dopo login
-    setLoading(false);
+    setIsLoggedOut(false); 
   };
 
   const logout = async () => {
@@ -97,7 +96,7 @@ export const AuthProvider = ({ children }) => {
       console.error("Logout fallito", err);
     } finally {
       setUser(null);
-      setIsLoggedOut(true); // blocca fetch /me
+      setIsLoggedOut(true); 
       setLoading(false);
     }
   };

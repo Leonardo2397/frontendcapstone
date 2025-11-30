@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function TourCard({ tour }) {
-  // fallback image (file locale che hai caricato)
   const fallback = "/mnt/data/Immagine 2025-11-20 120934.png";
 
   return (
